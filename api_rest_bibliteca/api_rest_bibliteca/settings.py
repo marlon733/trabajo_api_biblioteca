@@ -40,10 +40,9 @@ INSTALLED_APPS = [
     "biblioteca",
     "django_filters",
     'rest_framework',
-   
-    
-]
+    'rest_framework.authtoken',
 
+]
 
 REST_FRAMEWORK = {
     

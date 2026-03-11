@@ -8,5 +8,6 @@ router.register(r'libros',views.LibroViewSet)
 router.register(r'prestamos',views.prestamoViewSet,basename='prestamos')
 
 urlpatterns = [
-    path('api/',include(router.urls)),
+    path('', include(router.urls)),         # root endpoints (/autores/, /libros/, /prestamos/)
+    path('api/', include(router.urls)),      # optional prefix as before
 ]

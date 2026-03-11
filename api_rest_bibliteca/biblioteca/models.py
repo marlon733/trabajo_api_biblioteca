@@ -34,8 +34,10 @@ class prestamo(models.Model):
     fecha_devolucion=models.DateField()
     usuario= models.ForeignKey("auth.User",on_delete=models.CASCADE)
     devuelto = models.BooleanField(default=False)
+
     def __str__(self):
-        return f"Prestamo de {self.libro.titulo} el {self.user.username}"
+        # use the `usuario` field, not `user` (there is no attribute `user`)
+        return f"Prestamo de {self.libro.titulo} el {self.usuario.username}"
     
     
     

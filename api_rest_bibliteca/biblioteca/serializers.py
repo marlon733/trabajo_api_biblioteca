@@ -20,8 +20,8 @@ class LibroSerializer(serializers.ModelSerializer):
         model = libro
         fields = ['id','titulo','autor','autor_nombre','autor_apellido','isbn','fecha_nacimiento','genero','paginas','disponible']    
     
-    
-    def validete_isbn(self, value):
+    # method name must match DRF naming convention
+    def validate_isbn(self, value):
         if len(value) != 13:
             raise serializers.ValidationError("El ISBN debe tener 13 caracteres")
         return value 
@@ -29,7 +29,8 @@ class LibroSerializer(serializers.ModelSerializer):
            
 class prestamoSerializer(serializers.ModelSerializer):
     libro_titulo = serializers.CharField(source='libro.titulo', read_only=True)
-    usuario_nombre = serializers.CharField(source='usuario.nombre', read_only=True)
+    # auth.User does not have a "nombre" field; use username instead
+    usuario_nombre = serializers.CharField(source='usuario.username', read_only=True)
     
     class Meta:
         model = prestamo
